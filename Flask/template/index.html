@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Airline Passenger Prediction ML</title>
+  <style>
+        body
+        {
+            background-image:url( "{{ url_for('static', filename = 'images/aircraft.jpg') }}" )
+        }
+
+    </style>
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+		<header>
+			<div class="first_container">
+		   	 <nav class="first_nav">
+						<ul>
+
+						<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+							<li><strong><a href="/">Airline Passenger Satisfcation</a></strong></li>
+							<li id="new_prediction"><a href="{{ url_for('prediction')}}">New Prediction</a></li>
+						</ul>
+					</nav>
+			</div>
+		</header>
+
+		<section class ="first_sec">
+
+            <h1>Passenger Satisfaction Prediction</h1>
+
+				  <div class="form">
+     	 				<!-- Main Input For Receiving Query to our ML -->
+
+    					<form action="{{ url_for('predict')}}"method="post">
+                        
+                        <div class="firstDiv">
+
+                        
+                            <span>
+                                <div class="nameField">
+                                    <label for="Customer_Type">Customer Type</label>
+                                </div>
+                                <div class="inputField">
+                                    <select id="Customer_Type" name="Customer_Type" placeholder='Choose Customer Type' required="required">
+                                        <option value="" disabled selected hidden>--Select--</option>
+                                        <option value="0">First Time User</option>
+                                        <option value="1">Returning</option>
+                                    </select>
+                                </div>
+                            </span>
+                            
+                            <span>
+                                <div class="nameField">
+      					            <label for="Age">Age</label>
+                                </div>
+                                <div class="inputField">
+      					            <input type="number" step="any" id = "Age" name="Age" placeholder="Enter Age"  required="required" />
+                                </div>
+                            </span>
+                            
+                            <span>
+                                <div class="nameField">
+                                    <label for="Type_of_Travel">Type of Travel</label>
+                                </div>
+                                <div class="inputField">
+                                    <select id="Type_of_Travel" name="Type_of_Travel" required="required">
+                                        <option value="" disabled selected hidden>--Select--</option>
+                                        <option value="0">Business Travel</option>
+                                        <option value="1">Personal Travel</option>
+                                    </select>
+                                </div>
+                            </span>
+
+                            <span>
+                                <div class="nameField">
+                                    <label for="Flight_Class">Flight Class</label>
+                                </div>
+                                
+                                <div class="inputField">
+                                    <select id="Flight_Class" name="Flight_Class" required="required">
+                                        <option value="" disabled selected hidden>--Select--</option>
+                                        <option value="0">Business Class</option>
+                                        <option value="1">Economic Class</option>
+                                    </select>
+                                </div>
+                            </span>
+
+      					    <span>
+                                <div class="nameField">
+                                <label for="Flight_Distance">Flight Distance</label>
+                                </div>
+                                <div class="inputField">
+                                    <select id="Flight_Distance" name="Flight_Distance" required="required">
+                                        <option value="" disabled selected hidden>--Select--</option>
+                                        <option value="0">Short Distance < 1000</option>
+                                        <option value="1">Long Distance > 1000</option>
+                                    </select>
+                                </div>
+                            </span>
+                            {%for i in range(0, 4)%}
+                            <span>
+                                <div class="nameField">
+                                    <label for={{surveys[i]}}>{{surveys[i]}}</label>
+                                </div>
+                                <div class="inputField">
+                                    <select id={{survey_ids[i]}} name={{survey_ids[i]}} required="required">
+                                        <option value="" disabled selected hidden>--Select--</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </span>
+
+                            {%endfor%}
+                            
+                        </div>
+                        
+                        <div class="secondDiv">
+                        
+                            <!-- For loop logic of jinja template -->
+                            {%for i in range(4, len)%}
+                            <span>
+                                <div class="nameField">
+                                    <label for={{surveys[i]}}>{{surveys[i]}}</label>
+                                </div>
+                                <div class="inputField">
+                                    <select id={{survey_ids[i]}} name={{survey_ids[i]}} required="required">
+                                        <option value="" disabled selected hidden>--Select--</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
+                            </span>
+
+                            {%endfor%}
+                            <span>
+                                <div class="nameField">
+                                     <label for="Arrival Delay ">Arrival/Departure Delay</label>
+                                </div>
+                                <div class="inputField">
+                                    <select id="Arrival_Delay" name="Arrival_Delay" required="required">
+                                        <option value="" disabled selected hidden>--Select--</option>
+                                        <option value="1">No Delay</option>
+                                        <option value="2">Delayed</option>
+                                    </select>
+                                </div>
+                            </span>
+                        </div>
+                        <span>
+                          <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+                        </span>
+                    
+                    </form>
+                </div>
+		</section>
+
+	</body>
+</html>
+
