@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Airline Passenger Prediction ML</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body background = "{{ url_for('static', filename='/images/aircraft.jpg') }}">
+		<header>
+			<div class="first_container">
+		   	 <nav class="first_nav">
+						<ul>
+
+						<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+							<li><strong><a href="/">Airline Passenger Satisfcation</a></strong></li>
+							<li id="new_prediction"><a href="{{ url_for('prediction')}}"New Prediction</a></li>
+						</ul>
+					</nav>
+			</div>
+		</header>
+
+		<section class ="first_sec">
+
+			<div>
+            <h1>Passenger Satisfaction Prediction</h1>
+            <br>
+            <h1>{{prediction_text}}</h1>
+    		</div>
+
+		</section>
+
+
+	</body>
+</html>

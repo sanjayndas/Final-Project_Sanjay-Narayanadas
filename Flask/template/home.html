@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>Airline Passenger Prediction ML</title>
+  <!-- <style>
+        body
+        {
+            background-image:url( "{{ url_for('static', filename = 'images/airline.jpg') }}" )
+        }
+
+    </style> -->
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+
+</head>
+
+<body>
+		<header>
+			<div class="first_container">
+		   	 <nav class="first_nav">
+						<ul>
+
+						<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+							<li><strong><a href="/">Airline Passenger Satisfcation</a></strong></li>
+							<li id="new_prediction"><a href="{{ url_for('prediction')}}">New Prediction</a></li>
+						</ul>
+					</nav>
+			</div>
+		</header>
+
+		<section class ="first_sec">
+
+            <div id="content">
+            
+            <h1 id="hmain">Airline Passenger Satisfaction </h1>
+            <br>
+            <br>
+            <p>Passenger Satisfaction is a cruicial and important factor that affects any Airline company's business. If the passengers are satisfied then it means they will again come back for the same airline, which results in more business. </p>
+            <br> 
+            <p>Here we have taken data from a US Airlines, and studied, explored, trained and built a model to predict the passenger satisfaction using the Random Forest Classifier ML Model.</p>
+            <p>The different factors that affect passenger satisfaction are the services provided like Inflight wifi service, inflight entertainment, food, cleanliness, etc., and also factors like Delay.</p>
+            <br>
+            <p> To try a Prediction Click on <strong><i><a href="{{ url_for('prediction')}}">New Prediction</a></i></strong>.</p> 
+            
+            </div>
+            <div id="img">
+                <img src="/static/images/airline.jpg" >
+            </div>
+            <div id="img2">
+                <img src="/static/images/flightsatisfaction.jpg" >
+            </div>
+            
+        </section>             
+  
+</body>
+</html>
